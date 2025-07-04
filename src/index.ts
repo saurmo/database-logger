@@ -1,6 +1,7 @@
 import { DbLoggerProps } from "./domain/config";
 import { Logger } from "./domain/logger";
 import { DynamoLogger } from "./infrastructure/dynamo.logger";
+import { NewRelicLogger } from "./infrastructure/new-relic.logger";
 import { PostgresLogger } from "./infrastructure/postgres.logger";
 
 export class DatabaseLogger {
@@ -24,6 +25,8 @@ export class DatabaseLogger {
             log: (message: string, info: any) => Promise.resolve(console.log(message, info)),
           };
           break;
+          case "newrelic":
+            this.instance.logger = NewRelicLogger.getInstance(config.config);
         default:
           throw new Error("LoggerDb type not found");
       }

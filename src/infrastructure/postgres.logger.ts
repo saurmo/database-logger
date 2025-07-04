@@ -19,13 +19,19 @@ export class PostgresLogger implements Logger {
 
   private async connect() {
     try {
-      this.pool = new Pool({
-        host: this.config.host,
-        user: this.config.user,
-        password: this.config.password,
-        port: this.config.port || 5432,
-        database: this.config.dbname || "postgres",
-      });
+      if (this.config?.connectionString) {
+        this.pool = new Pool({
+          connectionString: this.config.connectionString,
+        });
+      } else {
+        this.pool = new Pool({
+          host: this.config.host,
+          user: this.config.user,
+          password: this.config.password,
+          port: this.config.port || 5432,
+          database: this.config.dbname || "postgres",
+        });
+      }
       const client = await this.pool.connect();
       client.release();
       console.info("Postgres connected");

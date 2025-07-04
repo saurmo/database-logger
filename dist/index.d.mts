@@ -11,12 +11,19 @@ interface PostgresConfig {
     port: number;
     service: string;
 }
+interface NewRelicConfig {
+    licenseKey: string;
+    appName: string;
+}
 type DbLoggerProps = {
     type: "dynamo";
     config: DynamoConfig;
 } | {
     type: "postgres";
     config: PostgresConfig;
+} | {
+    type: "newrelic";
+    config: NewRelicConfig;
 } | {
     type: "console";
     config: {
@@ -36,4 +43,4 @@ declare class DatabaseLogger {
     static getInstance(config: DbLoggerProps): Promise<Logger>;
 }
 
-export { DatabaseLogger, type DbLoggerProps, type DynamoConfig, type Logger, type PostgresConfig };
+export { DatabaseLogger, type DbLoggerProps, type DynamoConfig, type Logger, type NewRelicConfig, type PostgresConfig };

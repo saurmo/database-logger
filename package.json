@@ -12,15 +12,18 @@
   "scripts": {
     "generate": "npm pack",
     "build": "rimraf dist && tsup src/index.ts --format esm,cjs --dts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": ""
   },
   "author": "saurmo",
   "license": "MIT",
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.751.0",
     "@aws-sdk/lib-dynamodb": "^3.751.0",
+    "@newrelic/winston-enricher": "^4.0.1",
+    "newrelic": "^12.17.0",
     "pg": "^8.13.3",
-    "uuid": "^11.1.0"
+    "uuid": "^11.1.0",
+    "winston": "^3.17.0"
   },
   "devDependencies": {
     "@types/node": "^22.13.5",

@@ -115,6 +115,32 @@ var DynamoLogger = class _DynamoLogger {
   }
 };
 
+// src/infrastructure/new-relic.logger.ts
+var import_newrelic = require("newrelic");
+var NewRelicLogger = class _NewRelicLogger {
+  constructor() {
+  }
+  static getInstance(config) {
+    if (!this.instance) {
+      const instance = new _NewRelicLogger();
+      process.env.NEW_RELIC_APP_NAME = config.appName;
+      process.env.NEW_RELIC_LICENSE_KEY = config.licenseKey;
+      this.instance = instance;
+    }
+    return this.instance;
+  }
+  log(message, info) {
+    return __async(this, null, function* () {
+      console.info("NewRelicLogger log", message, info);
+    });
+  }
+  error(message, info) {
+    return __async(this, null, function* () {
+      console.info("NewRelicLogger error", message, info);
+    });
+  }
+};
+
 // src/infrastructure/postgres.logger.ts
 var import_pg = require("pg");
 var PostgresLogger = class _PostgresLogger {
@@ -201,6 +227,8 @@ var DatabaseLogger = class _DatabaseLogger {
               log: (message, info) => Promise.resolve(console.log(message, info))
             };
             break;
+          case "newrelic":
+            this.instance.logger = NewRelicLogger.getInstance(config.config);
           default:
             throw new Error("LoggerDb type not found");
         }

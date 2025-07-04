@@ -4,13 +4,20 @@ export interface DynamoConfig {
   service: string;
 }
 
-export interface PostgresConfig {
-  host: string;
-  dbname: string;
-  user: string;
-  password: string;
-  port: number;
-  service: string;
+export type PostgresConfig = {
+      connectionString?: string;
+      host: string;
+      dbname: string;
+      user: string;
+      password: string;
+      port: number;
+      service: string;
+    }
+
+
+export interface NewRelicConfig {
+  licenseKey: string;
+  appName: string;
 }
 
 export type DbLoggerProps =
@@ -21,6 +28,10 @@ export type DbLoggerProps =
   | {
       type: "postgres";
       config: PostgresConfig;
+    }
+  | {
+      type: "newrelic";
+      config: NewRelicConfig;
     }
   | {
       type: "console";
