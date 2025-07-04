@@ -159,14 +159,21 @@ var PostgresLogger = class _PostgresLogger {
   }
   connect() {
     return __async(this, null, function* () {
+      var _a;
       try {
-        this.pool = new import_pg.Pool({
-          host: this.config.host,
-          user: this.config.user,
-          password: this.config.password,
-          port: this.config.port || 5432,
-          database: this.config.dbname || "postgres"
-        });
+        if ((_a = this.config) == null ? void 0 : _a.connectionString) {
+          this.pool = new import_pg.Pool({
+            connectionString: this.config.connectionString
+          });
+        } else {
+          this.pool = new import_pg.Pool({
+            host: this.config.host,
+            user: this.config.user,
+            password: this.config.password,
+            port: this.config.port || 5432,
+            database: this.config.dbname || "postgres"
+          });
+        }
         const client = yield this.pool.connect();
         client.release();
         console.info("Postgres connected");

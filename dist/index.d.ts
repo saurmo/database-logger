@@ -3,14 +3,15 @@ interface DynamoConfig {
     dbname: string;
     service: string;
 }
-interface PostgresConfig {
+type PostgresConfig = {
+    connectionString?: string;
     host: string;
     dbname: string;
     user: string;
     password: string;
     port: number;
     service: string;
-}
+};
 interface NewRelicConfig {
     licenseKey: string;
     appName: string;
