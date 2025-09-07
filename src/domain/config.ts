@@ -5,15 +5,14 @@ export interface DynamoConfig {
 }
 
 export type PostgresConfig = {
-      connectionString?: string;
-      host: string;
-      dbname: string;
-      user: string;
-      password: string;
-      port: number;
-      service: string;
-    }
-
+  connectionString?: string;
+  host: string;
+  dbname: string;
+  user: string;
+  password: string;
+  port: number;
+  service: string;
+};
 
 export interface NewRelicConfig {
   licenseKey: string;

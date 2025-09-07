@@ -1,3 +1,9 @@
 node_modules
 package-lock.json
 database-logger-1.0.0.tgzs
+dist
+*.tgz
+
+.DS_Store
+
+.dist
