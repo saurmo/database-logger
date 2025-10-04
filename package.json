@@ -1,6 +1,6 @@
 {
   "name": "database-logger",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Database logger",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -21,7 +21,7 @@
     "@aws-sdk/client-dynamodb": "^3.751.0",
     "@aws-sdk/lib-dynamodb": "^3.751.0",
     "@newrelic/winston-enricher": "^4.0.1",
-    "newrelic": "^12.17.0",
+    "newrelic": "^13.4.0",
     "pg": "^8.13.3",
     "uuid": "^11.1.0",
     "winston": "^3.17.0"
